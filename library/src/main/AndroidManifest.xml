@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.shenfan.androidemma">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
+    <application>
+
+        <activity
+            android:theme="@style/EmmaInstrumentation.Base"
+            android:name=".OpenJacocoInstrumtationActivity"
+            android:label="@string/emma_instrumentation_display_activity_label"
+            android:icon="@drawable/leak_canary_icon"
+            android:taskAffinity="me.shenfan.androidemma">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
