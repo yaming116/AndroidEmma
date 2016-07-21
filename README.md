@@ -42,6 +42,40 @@ android{
 }
 ```
 
+# 在主界面实现如下方法
+
+```java
+//主界面的*Activity*实现接口 *EmmaInstrumentationListener*,会在程序退出的时候dump测试覆盖率
+
+    private FinishListener finishListener;
+
+    @Override
+    public void setFinishListener(FinishListener listener) {
+        finishListener = listener;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (finishListener != null){
+            finishListener.onActivityFinished();
+        }
+    }
+ // 二是调用 
+ EmmaUtil.dump(Context);
+```
+
+
+更多信息见demo项目
+
+# 开始手工测试
+
+打开桌面图标 EmmaInstrumentation ,点击 open即可，其实就是执行了
+
+```
+adb shell am instrument 当前应用包名/me.shenfan.androidemma.EmmaInstrumentation
+```
+
 # Gradle
 
 ```groovy

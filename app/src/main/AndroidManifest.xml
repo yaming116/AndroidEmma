@@ -21,10 +21,4 @@
         </activity>
     </application>
 
-    <instrumentation
-        android:handleProfiling="true"
-        android:label="CoverageInstrumentation"
-        android:name="me.shenfan.androidemma.EmmaInstrumentation"
-        android:targetPackage="me.shenfan.androidemma.sample"/>
-
 </manifest>

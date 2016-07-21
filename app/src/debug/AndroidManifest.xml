@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.shenfan.androidemma.sample">
+
+    <instrumentation
+        android:handleProfiling="true"
+        android:label="CoverageInstrumentation"
+        android:name="me.shenfan.androidemma.EmmaInstrumentation"
+        android:targetPackage="me.shenfan.androidemma.sample"/>
+
+</manifest>
