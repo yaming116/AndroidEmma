@@ -42,10 +42,11 @@ android{
 }
 ```
 
-# 在主界面实现如下方法
+#  dump覆盖率文件的俩种方式：
+
+*  一： 主界面的*Activity*实现接口 *EmmaInstrumentationListener*, 添加如下方法，会在程序退出的时候dump测试覆盖率
 
 ```java
-//主界面的*Activity*实现接口 *EmmaInstrumentationListener*,会在程序退出的时候dump测试覆盖率
 
     private FinishListener finishListener;
 
@@ -61,10 +62,14 @@ android{
             finishListener.onActivityFinished();
         }
     }
- // 二是调用 
- EmmaUtil.dump(Context);
+
 ```
 
+*  二： 在需要的时候调用下面方法
+
+```java
+   EmmaUtil.dump(Context);
+```
 
 更多信息见demo项目
 
@@ -75,6 +80,12 @@ android{
 ```
 adb shell am instrument 当前应用包名/me.shenfan.androidemma.EmmaInstrumentation
 ```
+
+# 覆盖率结果查看
+
+默认数据保存在 *sdcard/Android/当前项目包名/coverage.ec*
+
+根据coverage.ec [生成报告，请看这里](http://blog.csdn.net/itfootball/article/details/45644159)
 
 # Gradle
 
