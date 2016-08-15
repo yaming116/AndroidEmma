@@ -1,5 +1,6 @@
 package me.shenfan.androidemma;
 
+import android.content.ComponentName;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,6 +27,9 @@ public class OpenJacocoInstrumtationActivity extends AppCompatActivity {
 
     public void open(View view){
         adbCommand(COMMAND_INSTRUMENT.replace(COMMAND, getPackageName()));
+
+        startInstrumentation(new ComponentName(getPackageName(),
+                "me.shenfan.androidemma.EmmaInstrumentation"), null, null);
     }
 
     public void generateCoverageReport(View view){
@@ -38,13 +42,42 @@ public class OpenJacocoInstrumtationActivity extends AppCompatActivity {
         DataOutputStream os = null;
         Log.e("test", command);
         try {
-            process = Runtime.getRuntime().exec("su");// the phone must be root,it can exctue the adb command
+            process = Runtime.getRuntime().exec("sh");
             os = new DataOutputStream(process.getOutputStream());
             os.writeBytes(command + "\n");
             os.writeBytes("exit\n");
             os.flush();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void execCommand(String command)  {
+        Runtime runtime = Runtime.getRuntime();
+        Process proc = null;
+        try {
+            proc = runtime.exec(command);
+            if (proc.waitFor() != 0) {
+                Log.e("test","exit value = " + proc.exitValue());
+            }
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    proc.getInputStream()));
+            StringBuffer stringBuffer = new StringBuffer();
+            String line = null;
+            while ((line = in.readLine()) != null) {
+                stringBuffer.append(line+" ");
+            }
+            System.out.println(stringBuffer.toString());
+
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                proc.destroy();
+            } catch (Exception e2) {
+            }
         }
     }
 }
