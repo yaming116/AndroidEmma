@@ -33,6 +33,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
-    debugCompile  'com.github.yaming116.AndroidEmma:library:1.0.0'
-    releaseCompile 'com.github.yaming116.AndroidEmma:androidemma-no-op:1.0.0'
+    debugCompile  'com.github.yaming116.AndroidEmma:library:1.0.1'
+    releaseCompile 'com.github.yaming116.AndroidEmma:androidemma-no-op:1.0.1'
 }
