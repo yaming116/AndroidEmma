@@ -98,8 +98,8 @@ allprojects {
 }
 
 dependencies {
-    debugCompile  'com.github.yaming116.AndroidEmma:library:1.0.0'
-    releaseCompile 'com.github.yaming116.AndroidEmma:androidemma-no-op:1.0.0'
+    debugCompile  'com.github.yaming116.AndroidEmma:library:1.0.1'
+    releaseCompile 'com.github.yaming116.AndroidEmma:androidemma-no-op:1.0.1'
 }
 ```
 
